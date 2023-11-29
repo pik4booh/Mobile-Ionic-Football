@@ -1,0 +1,7 @@
+{
+  "name": "Ionic-Football",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
