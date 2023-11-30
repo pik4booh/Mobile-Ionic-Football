@@ -41,8 +41,8 @@ const Tab1: React.FC = () => {
           </IonFabButton>
           <IonFabList side="start">
             <IonButton>Exterieur</IonButton>
-            <IonButton>Domicile</IonButton>
-            <IonButton>General</IonButton>
+            <IonButton disabled={true}>Domicile</IonButton>
+            <IonButton disabled={true}>General</IonButton>
           </IonFabList>
         </IonFab>
         
