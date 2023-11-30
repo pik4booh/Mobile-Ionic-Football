@@ -22,10 +22,10 @@ const Tab1: React.FC = () => {
           <IonSegmentButton value="all">
             <IonLabel>General</IonLabel>
           </IonSegmentButton>
-          <IonSegmentButton value="dom">
+          <IonSegmentButton value="dom" disabled={true}>
             <IonLabel>Defense</IonLabel>
           </IonSegmentButton>
-          <IonSegmentButton value="ext">
+          <IonSegmentButton value="ext" disabled={true}>
             <IonLabel>Attaque</IonLabel>
           </IonSegmentButton>
         </IonSegment>
@@ -41,8 +41,8 @@ const Tab1: React.FC = () => {
           </IonFabButton>
           <IonFabList side="start">
             <IonButton>Exterieur</IonButton>
-            <IonButton disabled={true}>Domicile</IonButton>
-            <IonButton disabled={true}>General</IonButton>
+            <IonButton>Domicile</IonButton>
+            <IonButton>General</IonButton>
           </IonFabList>
         </IonFab>
         
