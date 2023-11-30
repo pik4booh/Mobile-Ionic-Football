@@ -1,7 +1,5 @@
 {
-  "name": "Ionic-Football",
-  "integrations": {
-    "capacitor": {}
-  },
+  "name": "myApp",
+  "integrations": {},
   "type": "react-vite"
 }
