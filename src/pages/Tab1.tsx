@@ -18,17 +18,24 @@ import { filter } from 'ionicons/icons';
 import axios from 'axios';
 
 interface Equipe {
-  rang: string;
-  nomEquipe: string;
-  nomCompetition: string;
+  idGeneral: string;
+  rang: number;
   note: string;
   buts: string;
   tirePM: string;
   jaune: string;
   rouge: string;
   possession: string;
-  passesreussies: string;
-  aeriensgagnes: string;
+  passesReussies: string;
+  aeriensGagnes: string;
+  equipe: {
+    idEquipe: string;
+    nomEquipe: string;
+    competition: {
+      idCompetition: string;
+      nomCompetition: string;
+    };
+  };
 }
 
 const Tab1: React.FC = () => {
@@ -40,7 +47,7 @@ const Tab1: React.FC = () => {
   }, [activeTab]);
 
   const fetchData = async (tab: string) => {
-    const endpoint = `your_api_endpoint/${tab}`;
+    const endpoint = `https://localhost:7221/api/WhoScored/Generals/${tab}`;
 
     try {
       const response = await axios.get<Equipe[]>(endpoint);
@@ -72,21 +79,22 @@ const Tab1: React.FC = () => {
       </IonHeader>
 
       <IonContent fullscreen>
-        {equipeData.map((equipe) => (
-          <ItemEquipe
-            rang={equipe.rang}
-            nomEquipe={equipe.nomEquipe}
-            nomCompetition={equipe.nomCompetition}
-            note={equipe.note}
-            buts={equipe.buts}
-            tirePM={equipe.tirePM}
-            jaune={equipe.jaune}
-            rouge={equipe.rouge}
-            possession={equipe.possession}
-            passesreussies={equipe.passesreussies}
-            aeriensgagnes={equipe.aeriensgagnes}
-          />
-        ))}
+      {equipeData.map((equipe, index) => (
+      <ItemEquipe
+        key={equipe.idGeneral}
+        rang={index+1}
+        note={equipe.note}
+        buts={equipe.buts}
+        tirePM={equipe.tirePM}
+        jaune={equipe.jaune}
+        rouge={equipe.rouge}
+        possession={equipe.possession}
+        passesReussies={equipe.passesReussies}
+        aeriensGagnes={equipe.aeriensGagnes}
+        nomEquipe={equipe.equipe.nomEquipe}
+        nomCompetition={equipe.equipe.competition.nomCompetition}
+        />
+      ))}
 
         <IonFab slot="fixed" vertical="bottom" horizontal="end">
           <IonFabButton>

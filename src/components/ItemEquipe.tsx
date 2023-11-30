@@ -1,21 +1,34 @@
 import { IonAccordionGroup, IonAccordion, IonItem, IonAvatar, IonLabel, IonNote, IonList, IonBadge, IonGrid, IonRow, IonCol } from "@ionic/react";
 
 interface ItemEquipeProps {
-  rang: string;
-  nomEquipe: string;
-  nomCompetition: string;
+  key: string;
+  rang: number;
   note: string;
   buts: string;
   tirePM: string;
   jaune: string;
   rouge: string;
   possession: string;
-  passesreussies: string;
-  aeriensgagnes: string;
+  passesReussies: string;
+  aeriensGagnes: string;
+  nomEquipe: string;
+  nomCompetition: string;
 }
 
-const ItemEquipe: React.FC<ItemEquipeProps> = ({ rang,nomEquipe,nomCompetition,note,buts,tirePM,rouge,jaune,possession,passesreussies,aeriensgagnes }) => {
-  return (
+
+const ItemEquipe: React.FC<ItemEquipeProps> = ({
+  note,
+  rang,
+  buts,
+  tirePM,
+  rouge,
+  jaune,
+  possession,
+  passesReussies,
+  aeriensGagnes,
+  nomEquipe,
+  nomCompetition,
+}) => {  return (
     <IonAccordionGroup>
           <IonAccordion value="first">
             <IonItem slot="header" color="light">
@@ -23,7 +36,7 @@ const ItemEquipe: React.FC<ItemEquipeProps> = ({ rang,nomEquipe,nomCompetition,n
                 <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
               </IonAvatar>
               <IonLabel>
-                <h4>{rang}. {nomEquipe}</h4>
+                <h4>{rang}.{nomEquipe}</h4>
                 <IonNote>{nomCompetition}</IonNote>
               </IonLabel>
             </IonItem>
@@ -45,10 +58,10 @@ const ItemEquipe: React.FC<ItemEquipeProps> = ({ rang,nomEquipe,nomCompetition,n
                   </IonRow>
                   <IonRow>
                     <IonCol>Possesion : {possession}%</IonCol>
-                    <IonCol>Passereussies : {passesreussies}%</IonCol>
+                    <IonCol>Passes reussies : {passesReussies}%</IonCol>
                   </IonRow>
                   <IonRow>
-                    <IonCol>Aeriens gagnes : {aeriensgagnes}</IonCol>
+                    <IonCol>Aeriens gagnes : {aeriensGagnes}</IonCol>
                   </IonRow>
                 </IonGrid>
                 
