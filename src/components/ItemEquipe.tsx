@@ -2,19 +2,19 @@ import { IonAccordionGroup, IonAccordion, IonItem, IonAvatar, IonLabel, IonNote,
 
 interface ItemEquipeProps {
   rang: string;
-  nom: string;
-  competition: string;
+  nomEquipe: string;
+  nomCompetition: string;
   note: string;
   buts: string;
-  tire: string;
-  rouge: string;
+  tirePM: string;
   jaune: string;
+  rouge: string;
   possession: string;
-  passereussie: string;
-  aeriengagne: string;
+  passesreussies: string;
+  aeriensgagnes: string;
 }
 
-const ItemEquipe: React.FC<ItemEquipeProps> = ({ rang,nom,competition,note,buts,tire,rouge,jaune,possession,passereussie,aeriengagne }) => {
+const ItemEquipe: React.FC<ItemEquipeProps> = ({ rang,nomEquipe,nomCompetition,note,buts,tirePM,rouge,jaune,possession,passesreussies,aeriensgagnes }) => {
   return (
     <IonAccordionGroup>
           <IonAccordion value="first">
@@ -23,8 +23,8 @@ const ItemEquipe: React.FC<ItemEquipeProps> = ({ rang,nom,competition,note,buts,
                 <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
               </IonAvatar>
               <IonLabel>
-                <h4>{rang}. {nom}</h4>
-                <IonNote>{competition}</IonNote>
+                <h4>{rang}. {nomEquipe}</h4>
+                <IonNote>{nomCompetition}</IonNote>
               </IonLabel>
             </IonItem>
             <div className="ion-padding" slot="content">
@@ -37,7 +37,7 @@ const ItemEquipe: React.FC<ItemEquipeProps> = ({ rang,nom,competition,note,buts,
                 <IonGrid>
                   <IonRow>
                     <IonCol>Buts : {buts}</IonCol>
-                    <IonCol>Tire pm : {tire}</IonCol>
+                    <IonCol>Tire pm : {tirePM}</IonCol>
                   </IonRow>
                   <IonRow>
                     <IonCol>Discipline : <IonBadge color="warning">{jaune}</IonBadge>  <IonBadge color="danger">{rouge}</IonBadge></IonCol>
@@ -45,10 +45,10 @@ const ItemEquipe: React.FC<ItemEquipeProps> = ({ rang,nom,competition,note,buts,
                   </IonRow>
                   <IonRow>
                     <IonCol>Possesion : {possession}%</IonCol>
-                    <IonCol>Passereussies : {passereussie}%</IonCol>
+                    <IonCol>Passereussies : {passesreussies}%</IonCol>
                   </IonRow>
                   <IonRow>
-                    <IonCol>Aeriens gagnes : {aeriengagne}</IonCol>
+                    <IonCol>Aeriens gagnes : {aeriensgagnes}</IonCol>
                   </IonRow>
                 </IonGrid>
                 

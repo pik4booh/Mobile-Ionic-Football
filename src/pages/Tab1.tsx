@@ -1,16 +1,55 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,IonList, IonItem, IonAvatar, IonLabel, IonSegment, IonSegmentButton, IonIcon, IonNote, IonFooter, IonFab, IonFabButton, IonFabList, IonButton, IonBadge, IonAccordion, IonAccordionGroup, IonCol, IonGrid, IonRow } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import ItemEquipe from '../components/ItemEquipe';
+import React, { useState, useEffect } from 'react';
 import {
-  filter,
-  chevronUpCircle,
-  colorPalette,
-  document,
-  globe,
-} from 'ionicons/icons';
-import './Tab1.css';
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonSegment,
+  IonSegmentButton,
+  IonFab,
+  IonFabButton,
+  IonFabList,
+  IonButton,
+  IonIcon,
+} from '@ionic/react';
+import ItemEquipe from '../components/ItemEquipe';
+import { filter } from 'ionicons/icons';
+import axios from 'axios';
+
+interface Equipe {
+  rang: string;
+  nomEquipe: string;
+  nomCompetition: string;
+  note: string;
+  buts: string;
+  tirePM: string;
+  jaune: string;
+  rouge: string;
+  possession: string;
+  passesreussies: string;
+  aeriensgagnes: string;
+}
 
 const Tab1: React.FC = () => {
+  const [equipeData, setEquipeData] = useState<Equipe[]>([]);
+  const [activeTab, setActiveTab] = useState(1); // 1 for General, 2 for Domicile, 3 for Exterieur
+
+  useEffect(() => {
+    fetchData(activeTab);
+  }, [activeTab]);
+
+  const fetchData = async (tab: number) => {
+    const endpoint = `your_api_endpoint?tab=${tab}`;
+
+    try {
+      const response = await axios.get<Equipe[]>(endpoint);
+      setEquipeData(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   return (
     <IonPage>
       <IonHeader>
@@ -18,35 +57,47 @@ const Tab1: React.FC = () => {
           <IonTitle>Football Stats</IonTitle>
         </IonToolbar>
         <IonToolbar>
-        <IonSegment value="all">
-          <IonSegmentButton value="all">
-            <IonLabel>General</IonLabel>
-          </IonSegmentButton>
-          <IonSegmentButton value="dom" disabled={true}>
-            <IonLabel>Defense</IonLabel>
-          </IonSegmentButton>
-          <IonSegmentButton value="ext" disabled={true}>
-            <IonLabel>Attaque</IonLabel>
-          </IonSegmentButton>
-        </IonSegment>
+          <IonSegment value={activeTab.toString()} onIonChange={(e) => setActiveTab(Number(e.detail.value))}>
+            <IonSegmentButton value="1">
+              <IonTitle>General</IonTitle>
+            </IonSegmentButton>
+            <IonSegmentButton value="2">
+              <IonTitle>Domicile</IonTitle>
+            </IonSegmentButton>
+            <IonSegmentButton value="3">
+              <IonTitle>Exterieur</IonTitle>
+            </IonSegmentButton>
+          </IonSegment>
         </IonToolbar>
-        
       </IonHeader>
-        
+
       <IonContent fullscreen>
-        
+        {equipeData.map((equipe) => (
+          <ItemEquipe
+            rang={equipe.rang}
+            nomEquipe={equipe.nomEquipe}
+            nomCompetition={equipe.nomCompetition}
+            note={equipe.note}
+            buts={equipe.buts}
+            tirePM={equipe.tirePM}
+            jaune={equipe.jaune}
+            rouge={equipe.rouge}
+            possession={equipe.possession}
+            passesreussies={equipe.passesreussies}
+            aeriensgagnes={equipe.aeriensgagnes}
+          />
+        ))}
+
         <IonFab slot="fixed" vertical="bottom" horizontal="end">
           <IonFabButton>
             <IonIcon icon={filter}></IonIcon>
           </IonFabButton>
           <IonFabList side="start">
-            <IonButton>Exterieur</IonButton>
-            <IonButton>Domicile</IonButton>
-            <IonButton>General</IonButton>
+            <IonButton onClick={() => fetchData(3)}>Exterieur</IonButton>
+            <IonButton onClick={() => fetchData(2)}>Domicile</IonButton>
+            <IonButton onClick={() => fetchData(1)}>General</IonButton>
           </IonFabList>
         </IonFab>
-        
-      <ItemEquipe rang='1' nom='Bayern Munich' competition='Bundesliga' note='7.21' buts='43' tire='19.9' jaune='17' rouge='1' possession='62.9' passereussie='88.8' aeriengagne='12.8'></ItemEquipe>
       </IonContent>
     </IonPage>
   );
