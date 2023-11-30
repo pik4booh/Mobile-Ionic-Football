@@ -33,14 +33,14 @@ interface Equipe {
 
 const Tab1: React.FC = () => {
   const [equipeData, setEquipeData] = useState<Equipe[]>([]);
-  const [activeTab, setActiveTab] = useState(1); // 1 for General, 2 for Domicile, 3 for Exterieur
+  const [activeTab, setActiveTab] = useState("general");
 
   useEffect(() => {
     fetchData(activeTab);
   }, [activeTab]);
 
-  const fetchData = async (tab: number) => {
-    const endpoint = `your_api_endpoint?tab=${tab}`;
+  const fetchData = async (tab: string) => {
+    const endpoint = `your_api_endpoint/${tab}`;
 
     try {
       const response = await axios.get<Equipe[]>(endpoint);
@@ -57,14 +57,14 @@ const Tab1: React.FC = () => {
           <IonTitle>Football Stats</IonTitle>
         </IonToolbar>
         <IonToolbar>
-          <IonSegment value={activeTab.toString()} onIonChange={(e) => setActiveTab(Number(e.detail.value))}>
-            <IonSegmentButton value="1">
+          <IonSegment value={activeTab} onIonChange={(e) => setActiveTab(e.detail.value as string)}>
+            <IonSegmentButton value="general">
               <IonTitle>General</IonTitle>
             </IonSegmentButton>
-            <IonSegmentButton value="2">
+            <IonSegmentButton value="domicile">
               <IonTitle>Domicile</IonTitle>
             </IonSegmentButton>
-            <IonSegmentButton value="3">
+            <IonSegmentButton value="exterieur">
               <IonTitle>Exterieur</IonTitle>
             </IonSegmentButton>
           </IonSegment>
@@ -93,9 +93,9 @@ const Tab1: React.FC = () => {
             <IonIcon icon={filter}></IonIcon>
           </IonFabButton>
           <IonFabList side="start">
-            <IonButton onClick={() => fetchData(3)}>Exterieur</IonButton>
-            <IonButton onClick={() => fetchData(2)}>Domicile</IonButton>
-            <IonButton onClick={() => fetchData(1)}>General</IonButton>
+            <IonButton onClick={() => fetchData('exterieur')}>Exterieur</IonButton>
+            <IonButton onClick={() => fetchData('domicile')}>Domicile</IonButton>
+            <IonButton onClick={() => fetchData('general')}>General</IonButton>
           </IonFabList>
         </IonFab>
       </IonContent>
