@@ -34,30 +34,7 @@ const Tab1: React.FC = () => {
       </IonHeader>
         
       <IonContent fullscreen>
-        <IonList>
-              <IonItem button={true}>
-                <IonAvatar aria-hidden="true" slot="start">
-                  <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                </IonAvatar>
-
-                <IonLabel>
-                  <h4>1. Bayern Munich</h4>
-                  <IonNote>Bundesliga</IonNote>
-                </IonLabel>
-                <IonBadge color="danger" slot='end'>7.21</IonBadge>
-
-                <IonIcon slot="icon-only end" name="dot"></IonIcon>
-              </IonItem>
-              <IonItem button={true}>
-                <IonAvatar aria-hidden="true" slot="start">
-                  <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                </IonAvatar>
-                <IonLabel>
-                  <h4>2. Paris Saint-Germain</h4>
-                  <IonNote>Ligue 1</IonNote>
-                </IonLabel>
-              </IonItem>
-      </IonList>
+        
         <IonFab slot="fixed" vertical="bottom" horizontal="end">
           <IonFabButton>
             <IonIcon icon={filter}></IonIcon>
