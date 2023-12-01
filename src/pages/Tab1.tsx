@@ -52,7 +52,7 @@ const Tab1: React.FC = () => {
 
   const fetchData = async (tab: string) => {
     setLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 800));
+    await new Promise(resolve => setTimeout(resolve, 500));
     const endpoint = `http://ec2-13-245-158-233.af-south-1.compute.amazonaws.com:5002/api/WhoScored/generals/${tab}`;
 
     try {
