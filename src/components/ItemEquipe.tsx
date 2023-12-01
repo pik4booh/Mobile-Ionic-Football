@@ -33,7 +33,7 @@ const ItemEquipe: React.FC<ItemEquipeProps> = ({
           <IonAccordion value="first">
             <IonItem slot="header" color="light">
               <IonAvatar aria-hidden="true" slot="start">
-                <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                <img alt="" src={nomEquipe +".png"} />
               </IonAvatar>
               <IonLabel>
                 <h4>{rang}.{nomEquipe}</h4>

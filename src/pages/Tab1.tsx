@@ -47,7 +47,7 @@ const Tab1: React.FC = () => {
   }, [activeTab]);
 
   const fetchData = async (tab: string) => {
-    const endpoint = `https://localhost:7221/api/WhoScored/Generals/${tab}`;
+    const endpoint = `http://ec2-13-245-158-233.af-south-1.compute.amazonaws.com:5002/api/WhoScored/generals/${tab}`;
 
     try {
       const response = await axios.get<Equipe[]>(endpoint);
@@ -68,11 +68,11 @@ const Tab1: React.FC = () => {
             <IonSegmentButton value="general">
               <IonTitle>General</IonTitle>
             </IonSegmentButton>
-            <IonSegmentButton value="domicile">
-              <IonTitle>Domicile</IonTitle>
+            <IonSegmentButton value="defense" disabled={true}>
+              <IonTitle>Defense</IonTitle>
             </IonSegmentButton>
-            <IonSegmentButton value="exterieur">
-              <IonTitle>Exterieur</IonTitle>
+            <IonSegmentButton value="attaque" disabled={true}>
+              <IonTitle>Attaque</IonTitle>
             </IonSegmentButton>
           </IonSegment>
         </IonToolbar>
