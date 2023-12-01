@@ -12,6 +12,9 @@ import {
   IonFabList,
   IonButton,
   IonIcon,
+  IonCol,
+  IonGrid,
+  IonRow,
 } from '@ionic/react';
 import ItemEquipe from '../components/ItemEquipe';
 import { filter } from 'ionicons/icons';
@@ -41,12 +44,15 @@ interface Equipe {
 const Tab1: React.FC = () => {
   const [equipeData, setEquipeData] = useState<Equipe[]>([]);
   const [activeTab, setActiveTab] = useState("general");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchData(activeTab);
   }, [activeTab]);
 
   const fetchData = async (tab: string) => {
+    setLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 800));
     const endpoint = `http://ec2-13-245-158-233.af-south-1.compute.amazonaws.com:5002/api/WhoScored/generals/${tab}`;
 
     try {
@@ -54,6 +60,8 @@ const Tab1: React.FC = () => {
       setEquipeData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -79,22 +87,32 @@ const Tab1: React.FC = () => {
       </IonHeader>
 
       <IonContent fullscreen>
-      {equipeData.map((equipe, index) => (
-      <ItemEquipe
-        key={equipe.idGeneral}
-        rang={index+1}
-        note={equipe.note}
-        buts={equipe.buts}
-        tirePM={equipe.tirePM}
-        jaune={equipe.jaune}
-        rouge={equipe.rouge}
-        possession={equipe.possession}
-        passesReussies={equipe.passesReussies}
-        aeriensGagnes={equipe.aeriensGagnes}
-        nomEquipe={equipe.equipe.nomEquipe}
-        nomCompetition={equipe.equipe.competition.nomCompetition}
-        />
-      ))}
+      {loading ? (
+        <IonGrid>
+          <IonRow className="ion-justify-content-center ion-align-items-center">
+            <IonCol size="auto">
+              <img src="src/img/loading.gif" alt="Loading" />
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+        ) : (
+        equipeData.map((equipe, index) => (
+        <ItemEquipe
+          key={equipe.idGeneral}
+          rang={index+1}
+          note={equipe.note}
+          buts={equipe.buts}
+          tirePM={equipe.tirePM}
+          jaune={equipe.jaune}
+          rouge={equipe.rouge}
+          possession={equipe.possession}
+          passesReussies={equipe.passesReussies}
+          aeriensGagnes={equipe.aeriensGagnes}
+          nomEquipe={equipe.equipe.nomEquipe}
+          nomCompetition={equipe.equipe.competition.nomCompetition}
+          />
+        ))
+        )}
 
         <IonFab slot="fixed" vertical="bottom" horizontal="end">
           <IonFabButton>
