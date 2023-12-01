@@ -32,7 +32,7 @@ const ItemEquipe: React.FC<ItemEquipeProps> = ({
           <IonAccordion value="first">
             <IonItem slot="header" color="light">
               <IonAvatar aria-hidden="true" slot="start">
-                <img alt="" src={"src/img/"+rang+".png"} />
+                <img alt="" src={"src/img/"+nomEquipe+".png"} />
               </IonAvatar>
               <IonLabel>
                 <h4>{rang}.{nomEquipe}</h4>
