@@ -1,5 +1,4 @@
 import { IonAccordionGroup, IonAccordion, IonItem, IonAvatar, IonLabel, IonNote, IonList, IonBadge, IonGrid, IonRow, IonCol } from "@ionic/react";
-
 interface ItemEquipeProps {
   key: string;
   rang: number;
@@ -33,7 +32,7 @@ const ItemEquipe: React.FC<ItemEquipeProps> = ({
           <IonAccordion value="first">
             <IonItem slot="header" color="light">
               <IonAvatar aria-hidden="true" slot="start">
-                <img alt="" src={nomEquipe +".png"} />
+                <img alt="" src={"src/img/"+rang+".png"} />
               </IonAvatar>
               <IonLabel>
                 <h4>{rang}.{nomEquipe}</h4>
