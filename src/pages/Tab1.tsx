@@ -53,7 +53,7 @@ const Tab1: React.FC = () => {
   const fetchData = async (tab: string) => {
     setLoading(true);
     await new Promise(resolve => setTimeout(resolve, 500));
-    const endpoint = `http://ec2-13-245-158-233.af-south-1.compute.amazonaws.com:5002/api/WhoScored/generals/${tab}`;
+    const endpoint = `https://d3ds3c.me/api/WhoScored/generals/${tab}`;
 
     try {
       const response = await axios.get<Equipe[]>(endpoint);
@@ -91,7 +91,7 @@ const Tab1: React.FC = () => {
         <IonGrid>
           <IonRow className="ion-justify-content-center ion-align-items-center">
             <IonCol size="auto">
-              <img src="src/img/loading.gif" alt="Loading" />
+              <img src="/assets/loading.gif" alt="Loading" />
             </IonCol>
           </IonRow>
         </IonGrid>

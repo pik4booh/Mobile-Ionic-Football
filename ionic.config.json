@@ -1,5 +1,7 @@
 {
-  "name": "myApp",
-  "integrations": {},
+  "name": "Whoscored",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react-vite"
 }
